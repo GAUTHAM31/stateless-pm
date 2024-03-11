@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pm';
+  password = ''
+
+  updatePassword(newPassword: string) {
+    this.password = newPassword;
+  }
 }

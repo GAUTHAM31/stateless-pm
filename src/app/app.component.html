@@ -1,19 +1,16 @@
 
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Password Manager</title>
-</head>
-<body>
-    <div class="container">
-        <div class="item">
-            <app-input-form></app-input-form>
-        </div>
-        <div class="item">
-            <!-- Content for the second div -->
-            Rules
-        </div>
+<div class="container">
+    <div class="item">
+        <app-input-form [genPassword]="password" (passwordUpdated)="updatePassword($event)"></app-input-form>
     </div>
-</body>
-</html>
+    <div class="item">
+        <!-- Content for the second div -->
+        Rules
+    </div>
+</div>
+<div class="container">
+    <div class="item">
+        Password
+        <p> - {{password}} </p>
+    </div>
+</div>
