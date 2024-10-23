@@ -23,22 +23,48 @@ export class InputFormComponent implements OnInit {
   private buildMasterForm() {
     return this.fb.group({
       url: '',
-      key: ''
+      key: '',
+      salt: ''
     });
   }
 
   public onSave(form: FormGroup) { 
-    this.generatePassword(form.value.url, form.value.key);
+    this.generatePassword(form.value.url, form.value.key, form.value.salt);
   }
 
-  private generatePassword(url: string, key: string): void {
-    const combinedString = url + key;
+  private generatePassword(url: string, key: string, salt: string = ''): void {
+    console.log(this.extractMainDomain(url));
+    const mainUrl = this.extractMainDomain(url);
+    const combinedString = mainUrl + key + salt;
     this.digestMessage(combinedString).then((updatedPassword) => {
       this.genPassword = updatedPassword;
       this.passwordUpdated.emit(this.genPassword);
     });
   }
 
+  private extractMainDomain(url: string): string {
+    try {
+      // Add protocol if missing
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
+      }
+      
+      // Extract the main domain from the URL
+      const hostname = new URL(url).hostname;
+      const parts = hostname.split('.').filter(part => part !== 'www');
+      if (parts.length > 2) {
+        return parts.slice(-2).join('.');
+      }
+      return parts.join('.');
+    } catch (error) {
+      console.error('Invalid URL:', error);
+      return '';
+    }
+  }
+
+  /**
+   * @param message - The string to hash.
+   */
   private async digestMessage(message: string) {
     const encoder = new TextEncoder();
     const data = encoder.encode(message);
