@@ -12,4 +12,7 @@ export class AppComponent {
   updatePassword(newPassword: string) {
     this.password = newPassword;
   }
+  copyPassword() {
+    navigator.clipboard.writeText(this.password).then().catch(e => console.log(e));
+  }
 }

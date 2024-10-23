@@ -8,9 +8,10 @@
         Rules
     </div>
 </div>
-<div class="container">
-    <div class="item">
-        Password
-        <p> - {{password}} </p>
+<div class="generated-password-container">
+    <div class="generated-password-item">
+        <label for="generatedPassword">Generated Password</label>
+        <input id="generatedPassword" type="text" [value]="password" readonly class="generated-password">
+        <button class="copy-button" (click)="copyPassword()">Copy</button>
     </div>
 </div>
