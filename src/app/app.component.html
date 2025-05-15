@@ -1,11 +1,11 @@
 
 <div class="container">
     <div class="item">
-        <app-input-form [genPassword]="password" (passwordUpdated)="updatePassword($event)"></app-input-form>
+        <app-input-form [passwordLengthFromParent]="passwordLength" [genPassword]="password" (passwordUpdated)="updatePassword($event)"></app-input-form>
     </div>
     <div class="item">
         <!-- Content for the second div -->
-        Rules
+        <app-rules (passwordLengthUpdate)="updatePasswordLength($event)"></app-rules>
     </div>
 </div>
 <div class="generated-password-container">

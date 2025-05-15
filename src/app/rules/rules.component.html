@@ -1,0 +1,42 @@
+<div class="container">
+    <!-- Radio Options -->
+
+      <div class="options">
+        <label>
+          <input type="radio" name="type" value="1" checked /> Random
+        </label>
+        <label>
+          <input type="radio" name="type" value="2" /> Memorable
+        </label>
+        <label>
+          <input type="radio" name="type" value="3" /> Pin
+        </label>
+      </div>
+    
+      <!-- Slider -->
+      <div class="slider-container">
+        <label for="slider">Length: <span id="sliderValue">{{passwordLength}}</span></label>
+        <input
+          type="range"
+          id="slider"
+          min="12"
+          max="64"
+          value="16"
+          [(ngModel)]="passwordLength"
+          (input)="updateSliderValue(passwordLength)"
+        />
+      </div>
+    
+      <!-- Checkbox Options -->
+      <div class="checkbox-container">
+        <label>
+          <input type="checkbox" name="shouldIncludeNumber" /> Number
+        </label>
+        <label>
+          <input type="checkbox" name="shouldIncludeSpecialCharacter" /> Symbols
+        </label>
+      </div>
+
+
+  </div>
+  
