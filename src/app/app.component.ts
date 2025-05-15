@@ -8,11 +8,17 @@ import {Component} from '@angular/core';
 export class AppComponent {
   title = 'pm';
   password = '';
+  passwordLength = 16;
 
   updatePassword(newPassword: string) {
     this.password = newPassword;
   }
+  updatePasswordLength(passwordLength: number) {
+    this.passwordLength = passwordLength;
+  }
   copyPassword() {
-    navigator.clipboard.writeText(this.password).then().catch((e) => console.log(e));
+    navigator.clipboard.writeText(this.password)
+        .then()
+        .catch((e) => console.log(e));
   }
 }
